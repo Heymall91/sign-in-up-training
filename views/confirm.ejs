@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+</head>
+<body>
+    <header>
+        <div class="wrapper">
+            <%- include('./partials/header') %>
+        </div>
+    </header>
+    <div class="wrapper">
+        <form action="/confirm" class="sign__form confirm" method="POST">
+            <h3>We send the confirm code on your email. Write it here for 5 minutes.</h3>
+            <input type="text" class="form__confirm" name="otp__code" placeholder="Your code"/>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+    <footer>
+        <div class="wrapper">
+            <%- include('./partials/footer') %>
+        </div>
+    </footer>
+</body>
+</html>

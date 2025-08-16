@@ -1,0 +1,27 @@
+<div class="logo">
+    <a href="/"><img src="/svg/globe.svg" alt="Globe"></a>
+</div>
+<nav>
+    <ul>
+        <li><a href="/">Main</a></li>
+        <li><a href="/contacts">Contacts</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li><a href="/about-us">About Us</a></li>
+        <li><a href="/support">Support</a></li>
+    </ul>
+</nav>
+<div class="sign__in__up">
+    <a href="/signin" class="sign in">Sign In</a>
+    <a href="/signup" class="sign up">Sign Up</a>
+</div>
+<script>
+    const registration = document.querySelector(".sign__in__up");
+    switch(location.pathname){
+        case "/signup":
+            registration.remove();
+        break;
+        case "/signin":
+            registration.remove();
+        break;
+    }
+</script>

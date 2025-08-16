@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <header>
+        <div class="wrapper">
+            <%- include('./dashpartials/header') %>
+        </div>
+    </header>
+    <div class="wrapper">
+        <form class="sign__form creating" action="/posts/user/create-post" method="POST">
+            <h3>
+                Create your post
+            </h3>
+            <div class="posts__block__header">
+                <input type="text" name="header" placeholder="Post theme" maxlength="40" />
+            </div>
+            <div class="posts__block__textarea">
+                <textarea name="content" id="content" placeholder="Write your post here..."></textarea>
+            </div>
+            <div class="posts__block__actions">
+                <button class="clean" type="button">Clean</button>
+                <button type="submit">Send</button>
+            </div>
+        </form>
+    </div>
+    <footer>
+        <div class="wrapper">
+            <%- include('./dashpartials/footer') %>
+        </div>
+    </footer>
+
+    <script>
+        const title = document.querySelector('.posts__block__header input'); 
+        const textarea = document.querySelector('#content'); 
+        const clean = document.querySelector('.clean');
+        clean.disabled = true;
+        let activeField = null;
+
+        function cleanUnlock(){
+            if(title.value.length > 0 || textarea.value.length > 0){
+                clean.disabled = false;
+            } else{
+                clean.disabled = true;
+            }
+        }
+
+        // fields
+        const fields = [title, textarea];
+        fields.forEach(el => {
+            el.addEventListener('input', () => {
+            activeField = el;
+            cleanUnlock();
+            });
+
+            el.addEventListener('focus', () => {
+            activeField = el;
+            cleanUnlock();
+            })
+        })
+        // clean
+        clean.addEventListener('click', () => {
+            if(activeField){
+                activeField.value = '';
+                cleanUnlock();
+            }
+        })
+
+    </script>
+</body>
+</html>

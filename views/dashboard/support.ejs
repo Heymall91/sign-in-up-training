@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <header>
+        <div class="wrapper">
+            <%- include('./dashpartials/header') %>
+        </div>
+    </header>
+    <div class="block__form">
+        <div class="wrapper">
+            <form action="/support/user" class="sign__form" method="POST">
+                <h3><%= title %></h3>
+                <h4>Have some idea, <%= username %>? Write them here!</h4>
+                <div class="input__subject">
+                    <label for="subject">Subject</label>
+                    <input type="text" name="subject" id="subject" required>
+                </div>
+                <textarea name="suptext" id="sup__text" maxlength="250" placeholder="Write your question" required></textarea>
+                <div class="sign__form__notification"></div>
+
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <div class="wrapper">
+            <%- include('./dashpartials/footer') %>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <%- include('../partials/head') %>
+</head>
+
+<body>
+    <header>
+        <div class='wrapper'>
+            <%- include('./dashpartials/header') %>
+        </div>
+    </header>
+    <div class='wrapper'>
+        <div class='edit__profile__block'>
+            <h2>Edit your name</h2>
+            <form action='/user/edit-name?_method=PUT' class='edit__profile__form' method='POST'>
+                <div class='edit__input name'>
+                    <label for='name'>Name</label><br>
+                    <input type='text' id='name' name='username' value='<%= username %>' />
+                </div>
+                <div class='edit__options'>
+                    <button type='submit' class='edit__change'>Change</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.querySelector('.edit__change').addEventListener('submit', (e) => {
+            e.preventDefault();
+            fetch('/user/edit-profile', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'cache': 'no-cache'
+                },
+                body: JSON.stringify({
+                    'username': 'username'
+                })
+            })
+                .then(() => {
+                    console.log('Sended');
+                })
+                .catch(err => {
+                    consoloe.error(err);
+                })
+        })
+    </script>
+</body>
+
+</html>

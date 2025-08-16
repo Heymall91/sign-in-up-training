@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <header>
+        <div class='wrapper'>
+            <%- include('./dashpartials/header') %>
+        </div>
+    </header>
+    <div class='wrapper'>
+        <% if(post){ %>
+        <form class='sign__form creating' action='/post/user/edit/<%= id %>?_method=PUT' method='POST'>
+            <h3>
+                Edit your post
+            </h3>
+            <div class='posts__block__header'>
+                <input type='text' name='header' placeholder='Post theme' maxlength='40' value='<%= post.header %>' />
+            </div>
+            <div class='posts__block__textarea'>
+                <textarea name='content' id='content' placeholder='Write your post here...'><%= post.content %></textarea>
+            </div>
+            <div class='posts__block__actions'>
+                <button class='clean' type='button'>Clean</button>
+                <button class='submit__btn' data-id='<%= id %>' type='submit'>Edit</button>
+            </div>
+        </form>
+        <% } %>
+    </div>
+    <footer>
+        <div class='wrapper'>
+            <%- include('./dashpartials/footer') %>
+        </div>
+    </footer>
+
+    <script>
+        const title = document.querySelector('.posts__block__header input'); 
+        const textarea = document.querySelector('#content'); 
+        const submit = document.querySelector('.submit__btn');
+        const clean = document.querySelector('.clean');
+        // disabled
+        submit.disabled = true;
+        clean.disabled = true;
+        let activeField = null;
+
+        function cleanUnlock(){
+            if(title.value.length > 0 || textarea.value.length > 0){
+                submit.disabled = false;
+                clean.disabled = false;
+            } else{
+                submit.disabled = true;
+                clean.disabled = true;
+            }
+        }
+
+        // fields
+        const fields = [title, textarea];
+        fields.forEach(el => {
+            el.addEventListener('input', () => {
+            activeField = el;
+            cleanUnlock();
+            });
+
+            el.addEventListener('focus', () => {
+            activeField = el;
+            cleanUnlock();
+            })
+        })
+        // clean
+        clean.addEventListener('click', () => {
+            if(activeField){
+                activeField.value = '';
+                cleanUnlock();
+            }
+        })
+        //method PUT submit
+        document.addEventListener('click', (e) => {
+                const data = e?.dataset?.id;
+                if (data) {
+                    fetch(`/post/user/edit/${data}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Cache-Control': 'no-cache'
+                        },
+                        body: JSON.stringify({
+                            'header': 'header',
+                            'content': 'content'
+                        }),
+                        cache: 'no-cache'
+                    })
+                        .then(
+                            () => {
+                                location.replace(`/post/user/${data}`);
+                            }
+                        )
+                        .catch(err => {
+                            console.log(err)
+                        })
+                }
+            })
+        
+    </script>
+</body>
+</html>

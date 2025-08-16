@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+</head>
+<body>
+    <header>
+        <div class="wrapper">
+            <%- include('./partials/header') %>
+        </div>
+    </header>
+    <div class="wrapper">
+        <div class="block">
+            <ul class="posts__list">
+                <div class="posts__create">
+                    <a class="posts__create__link" href="/signin">To add some post, please sign in</a>
+                </div>
+                <%- include('./general/posts-item')%>
+            </ul>
+        </div>
+    </div>
+    <footer>
+        <div class="wrapper">
+            <%- include('./partials/footer') %>
+        </div>
+    </footer>
+</body>
+</html>

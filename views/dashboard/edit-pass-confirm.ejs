@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("../partials/head") %>
+</head>
+<body>
+    <header>
+        <div class="wrapper">
+            <%- include("./dashpartials/header") %>
+        </div>
+    </header>
+    <div class="wrapper">
+        <div class="edit__profile__block">
+            <h2>We sended your OTP code on your email adress: <%= usermail %>. Please, write it below</h2>
+            <form action="/user/edit-pass-confirm" class="edit__profile__form" method="POST">
+                <div class="edit__input password">
+                    <label for="confirm">Your OTP code</label><br>
+                    <input type="text" id="pass" name="confirm" placeholder="OTP code"/>
+                </div>
+                <div class="edit__options">
+                    <button type="submit" class="edit__change">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- <script>
+        document.querySelector(".edit__change").addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            fetch("/user/edit-profile", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "cache": "no-cache"
+                },
+                body: JSON.stringify({
+                    "userpass": "userpass"
+                })
+            })
+            .then(() => {
+                console.log("Sended");
+            })
+            .catch(err => console.log(err));
+        })
+    </script> -->
+    <!-- <script>
+        setTimeout(() => {
+            document.querySelector('.sign__form__notification').textContent = '';
+        }, 3000)
+    </script> -->
+</body>
+</html>

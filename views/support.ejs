@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../views/partials/head') %>
+</head>
+<body>
+    <header>
+        <div class="wrapper">
+            <%- include('../views/partials/header') %>
+        </div>
+    </header>
+    <div class="block__form">
+        <div class="wrapper">
+            <form action="/support" class="sign__form" method="POST">
+                <h3><%= title %></h3>
+                <h4>Have you any questions? Ask your question here!</h4>
+                <div class="input__email">
+                    <label for="email">Email</label>
+                    <input type="email" name="usermail" id="email" required>
+                </div>
+                <div class="input__subject">
+                    <label for="subject">Subject</label>
+                    <input type="text" name="subject" id="subject" required>
+                </div>
+                <textarea name="suptext" id="sup__text" maxlength="250" placeholder="Write your question" required></textarea>
+                <div class="sign__form__notification"></div>
+
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <div class="wrapper">
+            <%- include('../views/partials/footer') %>
+        </div>
+    </footer>
+</body>
+</html>

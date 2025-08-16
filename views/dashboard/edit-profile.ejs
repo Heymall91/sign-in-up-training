@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <header>
+        <div class="wrapper">
+            <%- include('./dashpartials/header') %>
+        </div>
+    </header>
+    <div class="wrapper">
+        <div class="edit__profile__block">
+            <h2>Edit your profile, <%= usermail %></h2>
+            <div class="edit__links">
+                <div class="edit__standard">
+                    <a class="name" href="/user/edit-name">
+                        Change your name
+                    </a>
+                    <a class="pass" href="/user/edit-pass-confirm">
+                        Change your password
+                    </a>
+                </div>
+                <div class="edit__delete">
+                    <button type="button">Delete account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal__delete">
+        <div class="modal__block">
+            <h3>
+                Do you want to delete your account?
+            </h3>
+            <div class="modal__options">
+                <button type="button" id="yes" data-id="<%= userID %>">Yes</button>
+                <button type="button" id="no">No</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const deleteAcc = document.querySelector('#yes');
+        const deleteDecline = document.querySelector('#no');
+        document.querySelector('.edit__delete').addEventListener('click', (e) => {
+            document.querySelector('.modal__delete').style.display = 'block';
+        });
+        deleteAcc.addEventListener('click', (e) => {
+            const deleteID = e.target?.dataset?.id;
+            if(deleteID){
+                fetch(`/user/edit-profile`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Cache-Control': 'no-store',
+                    },
+                    cache: 'no-store',
+                })
+                .then(() => {
+                    console.log('Deleted');
+                    location.replace('/signin');
+                })
+                .catch(err => console.error(err));
+            }
+        })
+        deleteDecline.addEventListener('click', () => {
+            document.querySelector('.modal__delete').style.display = 'none';
+        })
+    </script>
+</body>
+</html>

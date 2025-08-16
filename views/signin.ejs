@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../views/partials/head') %>
+</head>
+<body>
+    <header>
+        <div class="wrapper">
+            <%- include('../views/partials/header') %>
+        </div>
+    </header>
+    <div class="block__form">
+        <div class="wrapper">
+            <form action="/signin" class="sign__form" method="POST">
+                <h3><%= title %></h3>
+                <div class="input__email">
+                    <label for="email">Email</label>
+                    <input type="email" name="usermail" id="email" required>
+                </div>
+                <div class="input__pass">
+                    <label for="pass">Password</label>
+                    <input type="password" name="userpass" id="pass" required>
+                </div>
+                <div class="sign__form__notification"><%= message %></div>
+                <div class="sign__form__ask">
+                    <span>Haven't account yet? <strong><a href="/signup">Create now!</a></strong></span>
+                </div>
+
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <div class="wrapper">
+            <%- include('../views/partials/footer') %>
+        </div>
+    </footer>
+    <script>
+        setTimeout(() => {
+            document.querySelector('.sign__form__notification').textContent = '';
+        }, 3000)
+    </script>
+</body>
+</html>

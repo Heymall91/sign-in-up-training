@@ -1,0 +1,14 @@
+<% if(posts){ %>
+    <% posts.forEach(e => {%>
+    <a href=<%=`/post/user/${e._id}`%> class="posts__item">
+        <div class="posts__info">
+            <span class="posts__date"><%= e.createdAt.toLocaleDateString("pl-PL") %></span>
+            <span class="posts__author"><%= e.usermail %></span>
+        </div>
+        <div class="posts__header">
+            <h3><%= e.header %></h3>
+        </div>
+        <div class="posts__content"><%= e.content %></div>
+    </a>
+<%})%>
+<% } %>
